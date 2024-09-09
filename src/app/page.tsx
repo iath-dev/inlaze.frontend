@@ -1,9 +1,9 @@
-import RootLayout from "./layout";
+import MoviesView from '@/components/MoviesView';
 
 export default function Home(): JSX.Element {
   return (
-    <RootLayout>
-      <h1>Welcome to the Inlaze Next.js Starter!</h1>
-    </RootLayout>
+    <main className="container max-w-6xl p-4 mx-auto">
+      <MoviesView />
+    </main>
   );
 }

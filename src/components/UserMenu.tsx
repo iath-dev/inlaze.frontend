@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 
 const UserMenu = (): React.ReactNode => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -19,10 +19,10 @@ const UserMenu = (): React.ReactNode => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -45,7 +45,7 @@ const UserMenu = (): React.ReactNode => {
       {/* Dropdown menu */}
       {isDropdownOpen && (
         <div
-          className="absolute right-4 top-0 mt-2 z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+          className="absolute top-0 z-50 my-4 mt-2 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow right-4 dark:bg-gray-700 dark:divide-gray-600"
           aria-labelledby="user-menu-button"
         >
           <div className="px-4 py-3">
