@@ -4,8 +4,11 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import axios from 'axios';
 import { UserResponse } from '@/types/api';
 
+/**
+ * Configuración de next-auth
+ */
 const handler = NextAuth({
-  secret: process.env.NEXT_PUBLIC_SECRET,
+  secret: process.env.NEXT_PUBLIC_SECRET, // Secreto para autentificación
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -13,6 +16,7 @@ const handler = NextAuth({
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
+      // Función que se ejecuta al iniciar sesión
       async authorize(credentials) {
         try {
           // Llamada al backend para el login

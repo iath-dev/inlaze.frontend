@@ -1,6 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
+/**
+ * Hook para manejar las peticiones desde Axios
+ * @param initialConfig Configuración inicial de Axios
+ * @returns Hook para el uso axios
+ */
 function useAxios<T>(
   initialConfig: AxiosRequestConfig,
 ): [
@@ -15,6 +20,7 @@ function useAxios<T>(
   const [hasError, setHasError] = useState<AxiosError | null>(null);
   const [config, setConfig] = useState<AxiosRequestConfig>(initialConfig);
 
+  // Callback para enviar la solicitud
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     setHasError(null);
@@ -32,6 +38,10 @@ function useAxios<T>(
     fetchData();
   }, [fetchData]);
 
+  /**
+   * Metodo para actualizar la configuración y volver a enviar la configuración
+   * @param _config Nueva configuración
+   */
   const updateConfig = (_config: AxiosRequestConfig): void => {
     setConfig((prevConfig) => ({
       ...prevConfig,

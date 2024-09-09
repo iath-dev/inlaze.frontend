@@ -11,6 +11,7 @@ export const UserMenu = (): React.ReactNode => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
+  // Método para mostrar el dropdown del usuario
   const toggleDropdown = (): void => setIsDropdownOpen(!isDropdownOpen);
 
   useEffect(() => {

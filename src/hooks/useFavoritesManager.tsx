@@ -5,13 +5,14 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useRef, useState } from 'react';
 
 interface UseFavoritesManagerType {
-  favorites: Favorite[];
-  isLoading: boolean;
-  addFavorite: (id: number) => Promise<void>;
-  removeFavorite: (id: number) => Promise<void>;
-  isFavorite: (id: number) => boolean;
+  favorites: Favorite[]; // Lista de favoritos
+  isLoading: boolean; // Estado de carga de la petición
+  addFavorite: (id: number) => Promise<void>; // Método para marcar una película como favorita
+  removeFavorite: (id: number) => Promise<void>; // Método para desmarcar una película como favorita
+  isFavorite: (id: number) => boolean; // Función para comprobar si una película esta entre los favoritos.
 }
 
+// Hook para manejar los favoritos de la cuenta
 export const useFavoritesManager = (): UseFavoritesManagerType => {
   const { data, status } = useSession();
   const { state, dispatch } = useFavorites();
@@ -20,6 +21,7 @@ export const useFavoritesManager = (): UseFavoritesManagerType => {
   const hasLoadedFavorites = useRef<boolean>(false);
 
   const loadFavorites = async (): Promise<void> => {
+    // Comprobación de que el usuario esta autentificado y no se ha llamado anteriormente a los favoritos
     if (hasLoadedFavorites.current || status !== 'authenticated') return;
 
     setIsLoading(true);
@@ -42,6 +44,7 @@ export const useFavoritesManager = (): UseFavoritesManagerType => {
     }
   };
 
+  // Método para agregar una película a favoritos
   const addFavorite = async (id: number): Promise<void> => {
     if (status !== 'authenticated') return;
     try {
@@ -59,6 +62,7 @@ export const useFavoritesManager = (): UseFavoritesManagerType => {
     }
   };
 
+  // Método para eliminar una película de favoritos
   const removeFavorite = async (id: number): Promise<void> => {
     if (status !== 'authenticated') return;
     try {
@@ -76,6 +80,7 @@ export const useFavoritesManager = (): UseFavoritesManagerType => {
     }
   };
 
+  // Método comprobar si la película esta en favoritos
   const isFavorite = (id: number): boolean => {
     const res = state.favorites.findIndex((el) => el.itemId === id) !== -1;
     return res;

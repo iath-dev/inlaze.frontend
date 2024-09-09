@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 
+// Interface de favoritos
 interface FavoriteButtonProps {
   id: number;
 }
@@ -16,6 +17,9 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({ id }) => {
 
   if (status !== 'authenticated') return null;
 
+  /**
+   * Método para marcar o desmarcar el objeto de favorito.
+   */
   const handleChangeState = async (): Promise<void> => {
     const isFav = isFavorite(id);
 

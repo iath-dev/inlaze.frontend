@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';
-import SearchForm from '@/components/SearchForm';
+import { SearchForm } from '@/components/SearchForm';
 import useAxios from '@/hooks/useAxios';
 import { PopularResponse } from '@/types/tmdb';
-import MovieCard from '@/components/MovieCard';
+import { MovieCard } from '@/components/MovieCard';
 import { AxiosRequestConfig } from 'axios';
 
 const initialConfig: AxiosRequestConfig = {
