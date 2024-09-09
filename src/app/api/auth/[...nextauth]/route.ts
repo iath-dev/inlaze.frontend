@@ -5,6 +5,7 @@ import axios from 'axios';
 import { UserResponse } from '@/types/api';
 
 const handler = NextAuth({
+  secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',

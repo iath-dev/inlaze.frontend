@@ -1,6 +1,6 @@
 export default function Loading(): JSX.Element {
   return (
-    <main className="container max-w-6xl p-4 mx-auto">
+    <main className="container grid max-w-6xl grid-cols-1 p-4 mx-auto gap md:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={`loading-card-${index}`}
