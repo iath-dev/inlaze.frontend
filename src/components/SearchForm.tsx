@@ -3,7 +3,11 @@
 import React, { useCallback, useState } from 'react';
 import GenreSelect from './GenreSelect';
 
-export const SearchForm = (): React.ReactNode => {
+interface SearchFormProps {
+  onSubmit: (query: string, genre: number) => void;
+}
+
+export const SearchForm: React.FC<SearchFormProps> = ({ onSubmit }) => {
   const [query, setQuery] = useState({ q: '', genre: 0 });
 
   const handleChangeGenre = useCallback(
@@ -23,8 +27,17 @@ export const SearchForm = (): React.ReactNode => {
     setQuery((q) => ({ ...q, q: value }));
   };
 
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+
+    onSubmit(query.q, query.genre);
+  };
+
   return (
-    <form className="flex items-center max-w-lg p-4 mx-auto space-x-4">
+    <form
+      onSubmit={handleSubmit}
+      className="flex items-center max-w-lg p-4 mx-auto space-x-4"
+    >
       <GenreSelect onChange={handleChangeGenre} />
       <div className="flex items-center">
         <label htmlFor="simple-search" className="sr-only">
@@ -37,7 +50,6 @@ export const SearchForm = (): React.ReactNode => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search movie"
             onChange={handleChangeQuery}
-            required
           />
         </div>
         <button

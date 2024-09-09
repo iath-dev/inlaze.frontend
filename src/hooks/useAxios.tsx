@@ -8,6 +8,7 @@ function useAxios<T>(
   boolean,
   AxiosError | null,
   (config: AxiosRequestConfig) => void,
+  AxiosRequestConfig,
 ] {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,10 +33,13 @@ function useAxios<T>(
   }, [fetchData]);
 
   const updateConfig = (_config: AxiosRequestConfig): void => {
-    setConfig((prevConfig) => ({ ...prevConfig, ..._config }));
+    setConfig((prevConfig) => ({
+      ...prevConfig,
+      ..._config,
+    }));
   };
 
-  return [data, isLoading, hasError, updateConfig];
+  return [data, isLoading, hasError, updateConfig, config];
 }
 
 export default useAxios;
