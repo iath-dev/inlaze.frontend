@@ -1,5 +1,6 @@
 'use client';
 
+import { FavoriteButton } from '@/components/FavoriteButton';
 import { MovieCard } from '@/components/MovieCard';
 import useAxios from '@/hooks/useAxios';
 import { MovieDetails, PopularResponse } from '@/types/tmdb';
@@ -25,7 +26,18 @@ export default function Page(): JSX.Element {
     },
   });
 
-  if (!data || !recommendation) return <p>Loading...</p>;
+  if (!data || !recommendation)
+    return (
+      <main className="container flex flex-col items-center justify-center max-w-6xl gap-4 p-4 mx-auto animate-pulse md:flex-row">
+        <div className="rounded-lg bg-slate-500 w-72 h-96"></div>
+        <div className="flex flex-col w-full space-y-4">
+          <div className="w-full h-12 rounded bg-slate-500"></div>
+          <div className="w-full h-8 rounded bg-slate-500"></div>
+          <div className="w-full h-8 rounded bg-slate-500"></div>
+          <div className="flex-1 w-full rounded bg-slate-500"></div>
+        </div>
+      </main>
+    );
 
   return (
     <main className="container max-w-6xl p-4 mx-auto space-x-4">
@@ -36,24 +48,7 @@ export default function Page(): JSX.Element {
             src={parseImage(data.poster_path)}
             alt="backdrop image"
           />
-          <button
-            type="button"
-            className="w-full text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 inline-flex items-center"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-3.5 h-3.5 me-2"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <span className="flex-1">Add to favorite</span>
-          </button>
+          <FavoriteButton id={data.id} />
         </div>
         <section className="mt-4">
           <h1 className="flex items-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">

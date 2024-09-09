@@ -2,9 +2,10 @@
 
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
+import { Footer } from '@/components/Footer';
+import { Navbar } from '@/components/Navbar';
 import { SessionProvider } from 'next-auth/react';
+import { FavoritesProvider } from '@/context/FavoritesContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
         className={`${inter.className} max- dark:bg-gray-900 dark:text-gray-400`}
       >
         <SessionProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <FavoritesProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </FavoritesProvider>
         </SessionProvider>
       </body>
     </html>

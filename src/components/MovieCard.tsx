@@ -1,5 +1,7 @@
+import { useFavoritesManager } from '@/hooks/useFavoritesManager';
 import { MovieData } from '@/types/tmdb';
 import { parseImage } from '@/utils/helpers';
+import classNames from 'classnames';
 import Link from 'next/link';
 import React, { useMemo } from 'react';
 
@@ -8,6 +10,8 @@ interface MovieCardProps {
 }
 
 export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
+  const { isFavorite } = useFavoritesManager();
+
   const posterPath = useMemo(() => {
     if (!item.poster_path) return 'https://placehold.co/600x400';
 
@@ -34,6 +38,24 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
             <p className="text-sm opacity-50 line-clamp-1 text-slate-400">
               {item.original_title}
             </p>
+          </div>
+          <div
+            className={classNames(
+              isFavorite(item.id) ? 'text-red-500' : 'text-gray-500',
+            )}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-6 h-6 me-2"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                clipRule="evenodd"
+              />
+            </svg>
           </div>
         </div>
       </div>

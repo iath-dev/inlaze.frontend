@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-const UserMenu = (): React.ReactNode => {
+export const UserMenu = (): React.ReactNode => {
   const { status, data } = useSession();
   const router = useRouter();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

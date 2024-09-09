@@ -37,12 +37,14 @@ export const RegisterForm = (): React.ReactNode => {
     );
 
     if (res.data) {
-      const _res = await signIn('credentials', {
+      signIn('credentials', {
         email: data.email,
         password: data.password,
+      }).then((res) => {
+        if (res && res.ok) {
+          router.push('/');
+        }
       });
-
-      if (_res && _res.ok) return router.push('/');
     }
   };
 
