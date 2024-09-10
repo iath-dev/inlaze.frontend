@@ -21,15 +21,15 @@ export const MovieCard: React.FC<MovieCardProps> = ({ item }) => {
   return (
     <Link
       href={`/${item.id}`}
-      className="transition duration-300 ease-in-out bg-white border border-gray-200 rounded-lg shadow cursor-pointer min-w-72 max-w-80 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 hover:filter-none"
+      className="w-full transition duration-300 ease-in-out bg-white border border-gray-200 rounded-lg shadow cursor-pointer min-w-72 md:max-w-80 hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 hover:filter-none"
     >
       <img
         src={posterPath}
-        className="object-cover object-center w-full rounded-t-lg h-80"
+        className="object-cover object-center w-full rounded-t-lg h-96 md:h-72"
         alt={`${item.original_title} Image`}
       />
       <div className="w-full p-4">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center justify-center space-x-4">
           <span className="flex items-center justify-center w-8 h-8 p-4 text-sm text-white bg-blue-500 rounded-lg aspect-square">
             {item.vote_average.toPrecision(2)}
           </span>

@@ -64,7 +64,7 @@ export const MoviesView = (): React.ReactNode => {
   return (
     <section className="space-y-4">
       <SearchForm onSubmit={handleSearch} />
-      <div className="grid justify-center w-full grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="grid items-center justify-center w-full grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
         {loading &&
           Array.from({ length: 6 }).map((_, index) => (
             <div
