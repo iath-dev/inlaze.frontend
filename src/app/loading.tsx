@@ -1,4 +1,16 @@
+'use client';
+
+import { useEffect } from 'react';
+
 export default function Loading(): JSX.Element {
+  useEffect(() => {
+    const wakeUpBackend = async (): Promise<void> => {
+      await fetch(`${process.env.NEXT_PUBLIC_SERVER}`);
+    };
+
+    wakeUpBackend();
+  }, []);
+
   return (
     <main className="container grid max-w-6xl grid-cols-1 p-4 mx-auto gap md:grid-cols-2 lg:grid-cols-3">
       {Array.from({ length: 6 }).map((_, index) => (
